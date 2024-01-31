@@ -61,7 +61,8 @@ export const updateTask = async (req, res) => {
       { _id: taskId },
       { userId, title, description, status }
     );
-    res.status(200).json({ message: "Task updated successfully" });
+    const task = await Task.find({ userId }).sort({ createdAt: -1 });
+    res.status(201).json(task);
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
@@ -71,7 +72,7 @@ export const getAllTasksForUser = async (req, res) => {
   try {
     const { userId } = req.params;
     const task = await Task.find({ userId }).sort({ createdAt: -1 });
-    res.status(200).json(task);
+    res.status(201).json(task);
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
