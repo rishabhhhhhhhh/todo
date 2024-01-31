@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useParams } from "react-router-dom";
-import { setTask } from "state";
+import { setTask, setTasks } from "state";
 import { SERVER_URL, STATUS } from "constants";
 import { useEffect } from "react";
 import Navbar from "scenes/navbar";
@@ -66,6 +66,7 @@ const TaskForm = () => {
       });
     }
     const savedUser = await result.json();
+    console.log("JSON = " + JSON.stringify(savedUser));
     return savedUser;
   };
 
