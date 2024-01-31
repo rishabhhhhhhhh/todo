@@ -1,19 +1,26 @@
 import express from "express";
 import {
-  getUserTasks,
+  getAllTasksForUser,
+  getTaskForUser,
   createTask,
+  updateTask,
   deleteUserTask,
 } from "../controllers/tasks.js";
+import { verifyToken } from "../middleware/auth.js";
 
 const router = express.Router();
 
 /* READ */
-router.get("/:userId/:status", getUserTasks); //get all tasks for user
+router.get("/:userId", verifyToken, getAllTasksForUser);
+router.get("/:taskId/user/:userId", verifyToken, getTaskForUser);
 
 /* POST */
-router.post("/", createTask);
+router.post("/", verifyToken, createTask);
+
+/* PUT */
+router.put("/update/:taskId", verifyToken, updateTask);
 
 /* DELETE */
-router.delete("/delete", deleteUserTask);
+router.delete("/delete", verifyToken, deleteUserTask);
 
 export default router;

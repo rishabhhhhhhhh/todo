@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 /* REGISTER USER */
 export const register = async (req, res) => {
   try {
-    const { firstName, lastName, email, password, image } = req.body;
+    const { firstName, lastName, email, password } = req.body;
 
     const salt = bcrypt.genSaltSync(10);
     const passwordHash = bcrypt.hashSync(password, salt);
@@ -15,7 +15,6 @@ export const register = async (req, res) => {
       lastName,
       email,
       password: passwordHash,
-      image,
     });
 
     const savedUser = await newUser.save();
