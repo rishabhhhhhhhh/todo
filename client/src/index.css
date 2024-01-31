@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+
+html,
+body,
+#root,
+.app {
+  height: 100%;
+  width: 100%;
+  font-family: "Rubik", sans-serif;
+}
+
+.all-task {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.task-card {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11),
+    0 4px 4px rgba(0, 0, 0, 0.11), 0 6px 8px rgba(0, 0, 0, 0.11),
+    0 8px 16px rgba(0, 0, 0, 0.11);
+  width: 480px;
+  margin: 40px;
+  padding: 10px 25px 20px 25px;
+  background: white;
+  border-radius: 20px;
+}
+
+.task-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px dotted lightgrey;
+}
+
+.task-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #4a515f;
+}
+
+.task-details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.task-status {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.task-description {
+  font-size: 15px;
+  color: #234e70;
+}
+
+.task-edit-icon {
+  cursor: pointer;
+  color: lightgrey;
+}
+
+.task-delete-icon {
+  cursor: pointer;
+  margin-left: 10px;
+  color: lightgrey;
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #3498db; /* Adjust the spinner color as needed */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.select-navbar .MuiFormControl-root {
+  min-width: 180px;
+  height: 55px;
+  margin: 0.25rem 0.75rem;
+}
+
+.select-navbar .MuiFormControl-root .MuiInputBase-root {
+  width: 100%;
+  height: 100%;
+}
