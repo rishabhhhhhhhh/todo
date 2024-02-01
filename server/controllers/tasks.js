@@ -1,11 +1,18 @@
 import Task from "../models/Task.js";
 import User from "../models/User.js";
 
-const isValidField = (field) => {
+const isValidTitleOrDescription = (field) => {
   if (field === "" || field == null) {
     return false;
   }
   return true;
+};
+
+const isValidStatus = (status) => {
+  if (status === "To Do" || status === "In Progress" || status === "Done") {
+    return true;
+  }
+  return false;
 };
 
 export const createTask = async (req, res) => {
@@ -15,13 +22,13 @@ export const createTask = async (req, res) => {
     const user = await User.findById(userId);
     if (!user) return res.status(400).json({ msg: "User does not exist. " });
 
-    if (!isValidField(title)) {
+    if (!isValidTitleOrDescription(title)) {
       return res.status(400).json({ msg: "Task title does not exist. " });
     }
-    if (!isValidField(description)) {
+    if (!isValidTitleOrDescription(description)) {
       return res.status(400).json({ msg: "Task description does not exist. " });
     }
-    if (!isValidField(status)) {
+    if (!isValidStatus(status)) {
       return res.status(400).json({ msg: "Task status does not exist. " });
     }
 
@@ -48,13 +55,13 @@ export const updateTask = async (req, res) => {
     const user = await User.findById(userId);
     if (!user) return res.status(400).json({ msg: "User does not exist. " });
 
-    if (!isValidField(title)) {
+    if (!isValidTitleOrDescription(title)) {
       return res.status(400).json({ msg: "Task title does not exist. " });
     }
-    if (!isValidField(description)) {
+    if (!isValidTitleOrDescription(description)) {
       return res.status(400).json({ msg: "Task description does not exist. " });
     }
-    if (!isValidField(status)) {
+    if (!isValidStatus(status)) {
       return res.status(400).json({ msg: "Task status does not exist. " });
     }
     await Task.findOneAndUpdate(
