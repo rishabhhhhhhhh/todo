@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setTasks } from "state";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Container, Typography } from "@mui/material";
 
 const trimTheValue = (value, maxLength) => {
   if (value === null || value === undefined) {
@@ -81,6 +82,18 @@ const TasksScreen = () => {
     [filterStatus, tasks]
   ); // eslint-disable-line react-hooks/exhaustive-deps
 
+  if (filteredTasks.length === 0) {
+    return (
+      <Container
+        maxWidth="sm"
+        style={{ marginTop: "50px", textAlign: "center" }}
+      >
+        <Typography variant="h4" gutterBottom>
+          It appears you don't have any to-dos in selected view filter.
+        </Typography>
+      </Container>
+    );
+  }
   return (
     <div className="all-task">
       {filteredTasks.map((details, index) => (
