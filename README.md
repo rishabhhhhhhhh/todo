@@ -1,6 +1,6 @@
 # How to test this todo project?
 
-This project is deployed on vercel. To test feature of this project you can either run it locally as mentioned below or you can visit deployed version(https://todo-three-pink.vercel.app/home).
+This project is deployed on vercel. To test feature of this project you can either run it locally as mentioned below or you can visit deployed version(https://todo-three-pink.vercel.app).
 
 # How to run frontend?
 
