@@ -10,15 +10,17 @@ import {
 } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useParams } from "react-router-dom";
-import { setTask, setTasks } from "state";
+import { setTask } from "state";
 import { SERVER_URL, STATUS } from "constants";
 import { useEffect } from "react";
 import Navbar from "scenes/navbar";
 import Spinner from "scenes/widgets/Spinner";
+
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const taskSchema = yup.object().shape({
   title: yup.string().required("required"),
@@ -27,20 +29,22 @@ const taskSchema = yup.object().shape({
 });
 
 const NEW_TASK_ID = "new";
+const INITIAL_TITLE = "";
+const INITIAL_DESCRIPTION = "";
+const INITIAL_STATUS = "To Do";
 
 const TaskForm = () => {
   const theme = useTheme();
   const isNonMobileScreens = useMediaQuery("(min-width: 600px)");
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [status, setStatus] = useState("To Do");
+  const [title, setTitle] = useState(INITIAL_TITLE);
+  const [description, setDescription] = useState(INITIAL_DESCRIPTION);
+  const [status, setStatus] = useState(INITIAL_STATUS);
   const [isLoading, setIsLoading] = useState(false);
 
   const { palette } = useTheme();
   const { taskId } = useParams();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
 
@@ -73,9 +77,20 @@ const TaskForm = () => {
   const handleFormSubmit = async (values, onSubmitProps) => {
     values["userId"] = user._id;
     saveUserResponse(values);
-    onSubmitProps.resetForm();
+    if (taskId === NEW_TASK_ID) onSubmitProps.resetForm();
 
-    navigate("/home");
+    toast.success(
+      `Task ${taskId === NEW_TASK_ID ? "created" : "updated"} successfully`,
+      {
+        position: "top-right",
+        autoClose: 2000, // in milliseconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
   };
 
   const getTask = async () => {
@@ -118,6 +133,7 @@ const TaskForm = () => {
 
   return (
     <Box>
+      <ToastContainer />
       <Navbar />
       <Box
         width={isNonMobileScreens ? "50%" : "93%"}
