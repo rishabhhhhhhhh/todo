@@ -11,7 +11,7 @@ import {
   Button,
   InputLabel,
 } from "@mui/material";
-import { Menu, Close, Add } from "@mui/icons-material";
+import { Menu, Close, Add, LogoutOutlined } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter, setLogout } from "state";
 import { useNavigate } from "react-router-dom";
@@ -73,6 +73,11 @@ const Navbar = ({ showAddTaskButton = false }) => {
         )}
       </FlexBetween>
 
+      <div className="welcome-username">
+        <div className="navbar-text">Welcome</div>
+        <div className="navbar-text">{fullName}</div>
+      </div>
+
       {/* DESKTOP NAV */}
       {isNonMobileScreens ? (
         <div className="select-navbar">
@@ -95,21 +100,10 @@ const Navbar = ({ showAddTaskButton = false }) => {
               <MenuItem value="Done">Done</MenuItem>
             </Select>
           </FormControl>
-          <FormControl>
-            <InputLabel id="selectOptions-label">Info</InputLabel>
-            <Select
-              value={fullName}
-              sx={{
-                backgroundColor: neutralLight,
-                "& .MuiSelect-select:focus": {
-                  backgroundColor: neutralLight,
-                },
-              }}
-            >
-              <MenuItem value={fullName}>{fullName}</MenuItem>
-              <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
-            </Select>
-          </FormControl>
+          <IconButton onClick={() => dispatch(setLogout())}>
+            <LogoutOutlined sx={{ fontSize: "1rem", color: "#4a515f" }} />
+            <span className="navbar-text">Logout</span>
+          </IconButton>
         </div>
       ) : (
         <IconButton
@@ -163,23 +157,10 @@ const Navbar = ({ showAddTaskButton = false }) => {
                 <MenuItem value="Done">Done</MenuItem>
               </Select>
             </FormControl>
-            <FormControl>
-              <InputLabel id="selectOptions-label">Info</InputLabel>
-              <Select
-                value={fullName}
-                sx={{
-                  backgroundColor: neutralLight,
-                  "& .MuiSelect-select:focus": {
-                    backgroundColor: neutralLight,
-                  },
-                }}
-              >
-                <MenuItem value={fullName}>{fullName}</MenuItem>
-                <MenuItem onClick={() => dispatch(setLogout())}>
-                  Log Out
-                </MenuItem>
-              </Select>
-            </FormControl>
+            <IconButton onClick={() => dispatch(setLogout())}>
+              <LogoutOutlined sx={{ fontSize: "1rem", color: "#4a515f" }} />
+              <span className="navbar-text">Logout</span>
+            </IconButton>
           </div>
         </Box>
       )}

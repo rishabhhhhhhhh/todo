@@ -96,6 +96,23 @@ body,
   }
 }
 
+.navbar-text {
+  color: #4a515f;
+  font-size: 0.8rem;
+}
+
+.welcome-username {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.select-navbar {
+  display: flex;
+  justify-content: center;
+}
+
 .select-navbar .MuiFormControl-root {
   min-width: 180px;
   height: 55px;
