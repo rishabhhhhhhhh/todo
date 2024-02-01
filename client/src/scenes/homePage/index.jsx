@@ -25,12 +25,12 @@ const HomePage = () => {
     });
     const data = await response.json();
     dispatch(setTasks({ tasks: data }));
+    setIsLoading(false);
   };
 
   useEffect(() => {
     setIsLoading(true);
     getUserTasks();
-    setIsLoading(false);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) {

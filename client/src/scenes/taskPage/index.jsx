@@ -70,7 +70,6 @@ const TaskForm = () => {
       });
     }
     const savedUser = await result.json();
-    console.log("JSON = " + JSON.stringify(savedUser));
     return savedUser;
   };
 
